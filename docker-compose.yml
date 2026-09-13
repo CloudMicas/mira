@@ -1,0 +1,26 @@
+services:
+  mira-server:
+    build:
+      context: ./mira-server
+      dockerfile: Dockerfile
+    container_name: mira-server
+    restart: unless-stopped
+    env_file:
+      - ./mira-server/.env
+    environment:
+      - NODE_ENV=production
+    # 不对外暴露端口，前端通过 Docker 内部网络访问
+    # 如需直连后端调试，取消注释下行
+    # ports:
+    #   - "3001:3001"
+
+  mira-web:
+    build:
+      context: ./mira-web
+      dockerfile: Dockerfile
+    container_name: mira-web
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - mira-server

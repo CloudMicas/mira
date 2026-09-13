@@ -1,0 +1,16 @@
+# 通用
+.git
+.gitignore
+*.md
+.trae/
+.vscode/
+node_modules/
+dist/
+
+# 环境变量（通过 compose 注入）
+.env
+.env.local
+
+# 日志
+*.log
+logs/
