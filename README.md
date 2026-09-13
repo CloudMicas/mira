@@ -149,24 +149,7 @@
 | 零 Key 兜底 | 不配 Key（`MOCK=0`） | ASR/LLM 为 mock，TTS 走 Edge TTS 真人语音，不花钱 |
 | 完整链路 | 配 `DASHSCOPE_API_KEY` | ASR/LLM/TTS/文生图全真实 |
 
-### 方式一：前后端分离开发（推荐）
-
-```bash
-# 1. 后端（端口 3001）
-cd mira-server
-cp .env.example .env          # 填入 DASHSCOPE_API_KEY（或留空走零 Key 模式）
-npm install
-npm run dev                   # tsx watch，改动自动重启
-
-# 2. 前端（端口 5173）
-cd mira-web
-npm install
-npm run dev                   # vite 已配置 /ws 代理到 localhost:3001
-```
-
-浏览器访问 **http://localhost:5173**。localhost 天然是安全上下文，麦克风权限直接可用。
-
-### 方式二：Docker Compose
+### Docker Compose
 
 ```bash
 # 需要先把 DASHSCOPE_API_KEY 写进 mira-server/.env
